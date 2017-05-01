@@ -1,7 +1,7 @@
 const $ = require('jquery');
 
 $(document).ready(function() {
-    $("body").on("click", function() {
+    $(".mytitle").on("click", function() {
         $("#text-output").html("Test is Working...");
     });
     
