@@ -4,13 +4,26 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>MadLibs Test</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>
     <body>
-
-        <h1 class="mytitle">Test Page</h1>
-        <h3>Text before execution.</h3>
-        <p id="text-output"></p>
-        <script src="./node_modules/jquery/src/jquery.js"></script>
-        <script src="./testing"></script>
+        <div class="container-fluid">
+            <div class="row text-center">
+                <h2>Testing Page</h2>
+            </div>
+            <div class="row text-center">
+                <div class="col-xs-12 well message">
+                    The message will go here
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-xs-12">
+                    <button id="getMessage" class="btn btn-primary">
+                        Get Message
+                    </button>
+                </div>
+            </div>
+        </div>
+        <script src="./testing/mad-lib-api-test.js"></script>
     </body>
 </html>

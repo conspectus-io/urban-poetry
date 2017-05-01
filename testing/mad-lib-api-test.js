@@ -1,8 +1,8 @@
 const $ = require('jquery');
 
 $(document).ready(function() {
-    $(".mytitle").on("click", function() {
-        $("#text-output").html("Test is Working...");
+    $("#getMessage").on("click", function() {
+        $(".message").html("Test is Working...");
     });
     
     // $.ajax({
