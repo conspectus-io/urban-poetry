@@ -24,10 +24,4 @@ function getWord() {
 
 console.log(getWord());
 
-// setTimeout(function parser() {
-//     parsedJSON = JSON.stringify(randomWordJSON);
-//     parsedJSON = JSON.parse(parsedJSON);
 
-//     let corpusText = parsedJSON.example;
-
-// }, 5000);
