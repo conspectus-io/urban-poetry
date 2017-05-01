@@ -1,14 +1,14 @@
 const $ = require('jquery');
 
-$(function () {
+$(document).ready(function() {
     $("body").on("click", function() {
-        $("body").prepend("<p>working test example...</p>");
+        $("#text-output").html("Test is Working...");
     });
     
-    $.ajax({
-        url: "metaphorpsum.com/sentences/4",
-        success: function (data) {
-            console.log(data);
-        }
-    });
+    // $.ajax({
+    //     url: "metaphorpsum.com/sentences/4",
+    //     success: function (data) {
+    //         console.log(data);
+    //     }
+    // });
 });
