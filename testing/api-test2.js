@@ -6,23 +6,35 @@ const util = require('util');
 let wordList = '';
 let listArr = [];
 
-function getWord() {
+function getWord(count) {
 	var list = [];
 
-	for (let i = 1; i <= 5; i++) {
-		urban.random().first(function (response) {
-			list.push(response.word);
-		});
+	for (let i = 1; i <= count; i++) {
+		console.time(`api-fetch #${i}`);
+		setTimeout(function pause() {
+			urban.random().first(function (response) {
+				list.push(response.word);
+				console.log('inside timeout:', list);
+				if (i === count - 1) return list;
+			});
+		}, 8000);
+		console.log('outside timeout:', list);
+		console.timeEnd(`api-fetch #${i}`);
 	}
-	
+
 	setTimeout(function sendWord() {
-		// console.log(list);
 		return list;
-	}, 7000);
-	
+		// console.log(list);
+	}, 10000);
+
 }
 
-console.log(getWord());
+let twoWordList = getWord(4);
+
+setTimeout(function pauselog() {
+	console.log(twoWordList);
+}, 20000);
+
 
 // setTimeout(function parser() {
 //     parsedJSON = JSON.stringify(randomWordJSON);

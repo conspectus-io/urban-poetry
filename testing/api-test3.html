@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>API Test</title>
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    </head>
+    <body>
+        <h1>API Test</h1>
+        <p id="clickme">Click here to call urban api.</p>
+        
+        <script>
+            // Execute JSONP query, reusing script tag
+            function excecuteJSONPQuery(strUrl) {
+                // check if jsonp script tag has been injected
+                // create new script tag with our new url
+                let oldScript = document.getElementById("jsonp"),
+                    newScript = document.createElement("script");
+                
+                newScript.src = strUrl;
+                newScript.id = "jsonp";
+
+                // if jsonp script tag already exists in DOM, replace it; otherwise append new script tag to DOM
+                if (oldScript !== null) {
+                    document.body.replaceChild(newScript, oldScript);
+                } else {
+                    document.body.appendChild(newScript);
+                }
+            }
+
+            // handlejsonpresults is called by injected scripts
+            function handlejsonpresults(objData) {
+                let arrWords = objData.results;
+                let arrWordsLength = objData.results.length;
+                let i, myNewList = document.createElement("ul");
+
+                // loop through results array and create html list for each item
+                for (i = 0; i < arrWordsLength; i++) {
+                    let myLi = document.createElement("li");
+                    let myTextNode = document.createTextNode(arrWords[i].text);
+                    myLi.appendChild(myTextNode);
+                    myNewList.appendChild(myLi);
+                }
+
+                // now words have been compiled, append list to the DOM
+                document.body.appendChild(myNewList);
+            }
+
+
+            // click event handler
+            let clickme = document.getElementById("clickme");
+            clickme.addEventListener("click", function(even) {
+                // insert urban api get request target url
+                executeJSONPQuery("http://api.urbandictionary.com/v0/random");
+            });
+
+        </script>
+    </body>
+</html>

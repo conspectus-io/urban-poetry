@@ -1,0 +1,12 @@
+#exclamation:hover,
+#adverb:hover,
+#noun:hover,
+#adjective:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+#outputBox {
+    margin: 10px;
+    font: 2em Cambria;
+}
