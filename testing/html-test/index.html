@@ -9,12 +9,20 @@
         <p id="clickme">Click here to call urban api.</p>
         
         <script>
+
+            // click event handler
+            var clickme = document.getElementById("clickme");
+            clickme.addEventListener("click", function(even) {
+                // insert urban api get request target url
+                executeJSONPQuery("http://api.urbandictionary.com/v0/random/");
+            });
+
             // Execute JSONP query, reusing script tag
-            function excecuteJSONPQuery(strUrl) {
+            function executeJSONPQuery(strUrl) {
                 // check if jsonp script tag has been injected
                 // create new script tag with our new url
-                let oldScript = document.getElementById("jsonp"),
-                    newScript = document.createElement("script");
+                var oldScript = document.getElementById("jsonp");
+                var newScript = document.createElement("script");
                 
                 newScript.src = strUrl;
                 newScript.id = "jsonp";
@@ -29,14 +37,14 @@
 
             // handlejsonpresults is called by injected scripts
             function handlejsonpresults(objData) {
-                let arrWords = objData.results;
-                let arrWordsLength = objData.results.length;
-                let i, myNewList = document.createElement("ul");
+                var arrWords = objData.results;
+                var arrWordsLength = objData.results.length;
+                var i, myNewList = document.createElement("ul");
 
                 // loop through results array and create html list for each item
                 for (i = 0; i < arrWordsLength; i++) {
-                    let myLi = document.createElement("li");
-                    let myTextNode = document.createTextNode(arrWords[i].text);
+                    var myLi = document.createElement("li");
+                    var myTextNode = document.createTextNode(arrWords[i].text);
                     myLi.appendChild(myTextNode);
                     myNewList.appendChild(myLi);
                 }
@@ -44,15 +52,6 @@
                 // now words have been compiled, append list to the DOM
                 document.body.appendChild(myNewList);
             }
-
-
-            // click event handler
-            let clickme = document.getElementById("clickme");
-            clickme.addEventListener("click", function(even) {
-                // insert urban api get request target url
-                executeJSONPQuery("http://api.urbandictionary.com/v0/random");
-            });
-
         </script>
     </body>
 </html>

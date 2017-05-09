@@ -13,24 +13,59 @@ const util = require('util');
 
 
 // timeout attempt with local variable
-let localWordList = '';
+// let localWordList = '';
 
-function print(logLevel, ...args) {
-    const message = util.format(...args);
+// function print(logLevel, ...args) {
+//     const message = util.format(...args);
 
-    if (logLevel === 'error') {
-        process.stderr.write(message + '\n');
-    } else if (logLevel === 'log' || logLevel === 'info' || logLevel === 'warn') {
-        process.stdout.write(message + '\n');
-    }
-}
+//     if (logLevel === 'error') {
+//         process.stderr.write(message + '\n');
+//     } else if (logLevel === 'log' || logLevel === 'info' || logLevel === 'warn') {
+//         process.stdout.write(message + '\n');
+//     }
+// }
 // console.time('api-call');
-urban.random().first(wordObj => {
-    print('log', wordObj.word);
-});
+// urban.random().first(wordObj => {
+//     print('log', wordObj.word);
+// });
 // console.timeEnd('api-call');
 
+var wordArr = [];
+let corpus = {};
+function getWord(arr, obj, pause = 100) {
+    if (arr.length) {
+        return arr;
+    } else {
+        urban.random().first(wordObj => {
+            arr.push(wordObj);
+            let numWords = 0;
+            for (words in obj) {
+                numWords++;
+            }
+            let wordNum = 'word' + numWords + 1;
+            let newWord = wordObj.word;
+            obj.wordNum = wordObj.word;
+            // obj.sentence = wordObj.example;
+        });
 
+        setTimeout(function initial() {
+            if (arr.length) {
+                return arr;
+            } else {
+                setTimeout(function returnVal() {
+                    return getWord(arr);
+                }, 200);
+            }
+        
+        }, pause);
+    }
+};
+
+getWord(wordArr);
+// console.log(wordArr);
+setTimeout(function logWord() {
+    console.log(wordArr[0]);
+}, 120);
 
 
 
